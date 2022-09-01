@@ -1,8 +1,8 @@
 import {Breadcrumb, Layout, Menu} from "antd";
 import {DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
-import {useEffect, useState} from "react";
-import {getAllStudents} from "../../client";
+import {useState} from "react";
 import "./styles.css";
+import TableStudent from "../Table/TableStudent.jsx";
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -23,20 +23,7 @@ const items = [
 ];
 
 const SideBar = () => {
-    const [students, setStudents] = useState([]);
     const [collapsed, setCollapsed] = useState(false);
-    const fetchStudents = () => {
-        getAllStudents().then(res => res.json()).then(data => setStudents(data));
-    }
-
-    useEffect(() => {
-        console.log("component is mounted!")
-        fetchStudents();
-    }, []);
-
-    if (students.length <= 0) {
-        return "no data";
-    }
 
     return (
         <Layout style={{minHeight: '100vh'}}>
@@ -52,11 +39,11 @@ const SideBar = () => {
                         <Breadcrumb.Item>Bill</Breadcrumb.Item>
                     </Breadcrumb>
                     <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
-                        Bill is a cat.
+                        <TableStudent/>
                     </div>
                 </Content>
                 <Footer style={{textAlign: 'center'}}>
-                    Ant Design ©2018 Created by Zhenzhong Zhou Server by Java
+                    Ant Design ©2022 Created by Zhenzhong Zhou Server by Java
                 </Footer>
             </Layout>
         </Layout>
