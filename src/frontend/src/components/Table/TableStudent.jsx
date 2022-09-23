@@ -3,6 +3,7 @@ import {Alert, Button, Empty, Spin, Table} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 
 import {getAllStudents} from "../../client";
+import {StudentDrawerForm} from "../index";
 
 const columns = [
     {
@@ -30,6 +31,8 @@ const columns = [
 const TableStudent = () => {
     const [students, setStudents] = useState([]);
     const [fetching, setFetching] = useState(true);
+    const [showDrawer, setShowDrawer] = useState(false);
+
     const fetchStudents = () => {
         getAllStudents().then(res => res.json()).then(data => {
             setStudents(data);
@@ -56,12 +59,15 @@ const TableStudent = () => {
     }
 
     return (
-        <Table rowKey={student => student.id} dataSource={students} columns={columns} bordered
-               title={() =>
-                   <Button type="primary" shape="round" icon={<PlusOutlined/>} size="small">
-                       Add New Student
-                   </Button>
-               } pagination={{pageSize: 50}} scroll={{y: 500}}/>
+        <>
+            <StudentDrawerForm showDrawer={showDrawer} setShowDrawer={setShowDrawer}/>
+            <Table rowKey={student => student.id} dataSource={students} columns={columns} bordered
+                   title={() =>
+                       <Button type="primary" shape="round" icon={<PlusOutlined/>} size="small" onClick={()=> setShowDrawer(prevState => !prevState)}>
+                           Add New Student
+                       </Button>
+            } pagination={{pageSize: 50}} scroll={{y: 500}}/>
+        </>
     );
 }
 

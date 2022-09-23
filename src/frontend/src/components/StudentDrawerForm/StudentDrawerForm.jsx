@@ -2,7 +2,7 @@ import {Drawer, Input, Col, Select, Form, Row, Button} from 'antd';
 
 const {Option} = Select;
 
-function StudentDrawerForm({showDrawer, setShowDrawer}) {
+const StudentDrawerForm = ({showDrawer, setShowDrawer}) => {
     const onCLose = () => setShowDrawer(false);
 
     const onFinish = values => {
@@ -13,12 +13,7 @@ function StudentDrawerForm({showDrawer, setShowDrawer}) {
         alert(JSON.stringify(errorInfo, null, 2));
     };
 
-    return <Drawer
-        title="Create new student"
-        width={720}
-        onClose={onCLose}
-        visible={showDrawer}
-        bodyStyle={{paddingBottom: 80}}
+    return <Drawer title="Create new student" width={720} onClose={onCLose} visible={showDrawer} bodyStyle={{paddingBottom: 80}}
         footer={
             <div
                 style={{
@@ -31,10 +26,7 @@ function StudentDrawerForm({showDrawer, setShowDrawer}) {
             </div>
         }
     >
-        <Form layout="vertical"
-              onFinishFailed={onFinishFailed}
-              onFinish={onFinish}
-              hideRequiredMark>
+        <Form layout="vertical" onFinishFailed={onFinishFailed} onFinish={onFinish}>
             <Row gutter={16}>
                 <Col span={12}>
                     <Form.Item
@@ -59,7 +51,7 @@ function StudentDrawerForm({showDrawer, setShowDrawer}) {
                 <Col span={12}>
                     <Form.Item
                         name="gender"
-                        label="gender"
+                        label="Gender"
                         rules={[{required: true, message: 'Please select a gender'}]}
                     >
                         <Select placeholder="Please select a gender">

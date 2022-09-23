@@ -1,6 +1,7 @@
+import {useState} from "react";
 import {Breadcrumb, Layout, Menu} from "antd";
 import {DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
-import {useState} from "react";
+
 import "./styles.css";
 import TableStudent from "../Table/TableStudent.jsx";
 
