@@ -1,12 +1,14 @@
 import {Drawer, Input, Col, Select, Form, Row, Button} from 'antd';
+import {addStudent} from "../../client";
 
 const {Option} = Select;
 
 const StudentDrawerForm = ({showDrawer, setShowDrawer}) => {
     const onCLose = () => setShowDrawer(false);
 
-    const onFinish = values => {
-        alert(JSON.stringify(values, null, 2));
+    const onFinish = student => {
+        console.log(JSON.stringify(student, null, 2))
+        addStudent(student).then(() => console.log("Student Added!")).catch(err => console.log(err));
     };
 
     const onFinishFailed = errorInfo => {
