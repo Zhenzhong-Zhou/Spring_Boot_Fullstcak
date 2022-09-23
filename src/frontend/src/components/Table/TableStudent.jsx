@@ -54,7 +54,7 @@ const TableStudent = () => {
     }
 
     return (
-        <Table rowKey={student => student.id} dataSource={students} columns={columns} bordered title={() => "Student"} pagination={{pageSize: 50}} scroll={{y: 240}}/>
+        <Table rowKey={student => student.id} dataSource={students} columns={columns} bordered title={() => "Student"} pagination={{pageSize: 50}} scroll={{y: 500}}/>
     );
 }
 
