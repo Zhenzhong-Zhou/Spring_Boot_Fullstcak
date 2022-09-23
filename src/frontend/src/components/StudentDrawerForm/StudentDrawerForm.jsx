@@ -1,14 +1,21 @@
-import {Drawer, Input, Col, Select, Form, Row, Button} from 'antd';
+import {useState} from "react";
+import {Drawer, Input, Col, Select, Form, Row, Button, Spin} from 'antd';
+import {LoadingOutlined} from "@ant-design/icons";
+
 import {addStudent} from "../../client";
 
 const {Option} = Select;
 
-const StudentDrawerForm = ({showDrawer, setShowDrawer}) => {
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
+const StudentDrawerForm = ({showDrawer, setShowDrawer, fetchStudents}) => {
     const onCLose = () => setShowDrawer(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const onFinish = student => {
-        console.log(JSON.stringify(student, null, 2))
-        addStudent(student).then(() => console.log("Student Added!")).catch(err => console.log(err));
+        setIsSubmitting(true);
+        addStudent(student).then(() => {onCLose(); fetchStudents()}).catch(err => console.log(err))
+            .finally(() => setIsSubmitting(false));
     };
 
     const onFinishFailed = errorInfo => {
@@ -72,6 +79,9 @@ const StudentDrawerForm = ({showDrawer, setShowDrawer}) => {
                         </Button>
                     </Form.Item>
                 </Col>
+            </Row>
+            <Row>
+                {isSubmitting && <Spin indicator={antIcon} />}
             </Row>
         </Form>
     </Drawer>

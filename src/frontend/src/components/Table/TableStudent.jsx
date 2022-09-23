@@ -60,7 +60,7 @@ const TableStudent = () => {
 
     return (
         <>
-            <StudentDrawerForm showDrawer={showDrawer} setShowDrawer={setShowDrawer}/>
+            <StudentDrawerForm showDrawer={showDrawer} setShowDrawer={setShowDrawer} fetchStudents={fetchStudents}/>
             <Table rowKey={student => student.id} dataSource={students} columns={columns} bordered
                    title={() =>
                        <Button type="primary" shape="round" icon={<PlusOutlined/>} size="small" onClick={()=> setShowDrawer(prevState => !prevState)}>
